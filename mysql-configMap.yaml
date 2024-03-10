@@ -1,0 +1,7 @@
+piVersion : v1
+kind : ConfigMap
+metadata:
+  name : db-config
+data:
+  host : mysql
+  dbName: mydb
