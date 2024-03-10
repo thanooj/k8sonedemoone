@@ -46,12 +46,6 @@ spec:
                   name : db-config
                   key :  dbName
                   
-            - name: MYSQL_USER
-              valueFrom :
-                secretKeyRef :
-                  name : mysql-secrets
-                  key :  username
-                  
             - name: MYSQL_ROOT_PASSWORD
               valueFrom :
                 secretKeyRef :
