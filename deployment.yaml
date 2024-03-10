@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: k8sonespringbootapp-deploy
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: k8sonespringbootapp
+  template:
+    metadata:
+      labels:
+        app: k8sonespringbootapp
+    spec:
+      containers:
+        - name: k8sonespringbootapp
+          image: us-central1-docker.pkg.dev/fresh-ember-414917/k8sonedemoone/k8soneimage:v1
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8080
