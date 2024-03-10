@@ -40,24 +40,19 @@ spec:
             - "--ignore-db-dir=lost+found" # Workaround for https://github.com/docker-library/mysql/issues/186
           name: mysql
           env:
-            - name: DB_HOST
-              valueFrom :
-                configMapKeyRef :
-                  name : db-config
-                  key :  host
-            - name: DB_NAME # Setting Database Name from a 'ConfigMap'
+            - name: MYSQL_DATABASE # Setting Database Name from a 'ConfigMap'
               valueFrom :
                 configMapKeyRef :
                   name : db-config
                   key :  dbName
                   
-            - name: DN_USERNAME
+            - name: MYSQL_USER
               valueFrom :
                 secretKeyRef :
                   name : mysql-secrets
                   key :  username
                   
-            - name: DB_PASSWORD
+            - name: MYSQL_ROOT_PASSWORD
               valueFrom :
                 secretKeyRef :
                   name : mysql-secrets
