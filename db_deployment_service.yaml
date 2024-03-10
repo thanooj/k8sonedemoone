@@ -35,7 +35,7 @@ spec:
         tier: database
     spec:
       containers:
-        - image: mysql:latest # image from docker-hub
+        - image: mysql:5.7 # image from docker-hub
           args:
           name: mysql
           env:
