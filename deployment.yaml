@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: k8sonespringbootapp
-          image: us-central1-docker.pkg.dev/fresh-ember-414917/k8sonedemoone/k8soneimage:v1
+          image: us-central1-docker.pkg.dev/fresh-ember-414917/k8sonedemoone/k8soneimage:v2
           imagePullPolicy: Always
           ports:
             - containerPort: 8081
