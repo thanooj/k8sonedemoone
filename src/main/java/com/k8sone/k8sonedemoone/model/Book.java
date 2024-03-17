@@ -1,4 +1,4 @@
-package com.k8sone.springbootk8sone.springbootk8sone.model;
+package com.k8sone.k8sonedemoone.model;
 
 import jakarta.persistence.*;
 import lombok.*;

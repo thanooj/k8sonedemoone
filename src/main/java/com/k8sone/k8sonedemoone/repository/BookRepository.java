@@ -1,7 +1,6 @@
-package com.k8sone.springbootk8sone.springbootk8sone.repository;
+package com.k8sone.k8sonedemoone.repository;
 
-import com.k8sone.springbootk8sone.springbootk8sone.model.Book;
-
+import com.k8sone.k8sonedemoone.model.Book;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

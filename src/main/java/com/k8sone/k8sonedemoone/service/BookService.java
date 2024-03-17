@@ -1,7 +1,7 @@
-package com.k8sone.springbootk8sone.springbootk8sone.service;
+package com.k8sone.k8sonedemoone.service;
 
-import com.k8sone.springbootk8sone.springbootk8sone.model.Book;
-import com.k8sone.springbootk8sone.springbootk8sone.repository.BookRepository;
+import com.k8sone.k8sonedemoone.model.Book;
+import com.k8sone.k8sonedemoone.repository.BookRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
