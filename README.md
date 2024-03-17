@@ -441,7 +441,39 @@ Database changed
 mysql> show tables;
 Empty set (0.00 sec)
 
-mysql> 
+mysql> select * from book;
++--------+--------------+----+--------+
+| price  | publish_date | id | title  |
++--------+--------------+----+--------+
+|  49.99 | 2023-04-01   |  1 | Book E |
+| 109.22 | 2022-05-02   |  2 | Book C |
++--------+--------------+----+--------+
+2 rows in set (0.00 sec)
+
+
+GET API:
+-------
+curl -X GET -H 'Content-Type: application/json' -i 'http://35.226.75.37:8081/books'
+HTTP/1.1 200 
+Content-Type: application/json
+Transfer-Encoding: chunked
+Date: Sun, 17 Mar 2024 17:09:46 GMT
+
+[{"id":1,"title":"Book E","price":49.99,"publishDate":"2023-04-01"}]
+
+
+POST API:
+--------
+curl -X POST -H 'Content-Type: application/json' -i 'http://35.226.75.37:8081/books' --data '{"title":"Book C","price":109.22,"publishDate":"2022-05-02"}'
+{"id":2,"title":"Book C","price":109.22,"publishDate":"2022-05-02"}
+
+
+
+
+
+
+kubectl delete deployments k8sonespringbootapp-deploy
+kubectl delete services k8sonespringbootapp-service
 
 
 ```
