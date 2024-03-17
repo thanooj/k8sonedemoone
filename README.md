@@ -283,7 +283,12 @@ jdkcolt@cloudshell:~/codebase/k8sonedemoone (fresh-ember-414917)$
 
 
 
-http://35.224.134.2:8080/greet/ram
+
+
+REST API - http://<Service-LoadBalancer-Ingress><TargetPort>/endpoint
+http://35.226.75.37:8081/greet/ram
+http://35.226.75.37:8081/books
+
 
 
 
