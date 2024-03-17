@@ -136,7 +136,7 @@ spec:
           image: us-central1-docker.pkg.dev/fresh-ember-414917/k8sonedemoone/k8soneimage:v1
           imagePullPolicy: Always
           ports:
-            - containerPort: 8080
+            - containerPort: 8081
 jdkcolt@cloudshell:~/codebase/k8sonedemoone (fresh-ember-414917)$ 
 
 jdkcolt@cloudshell:~/codebase/k8sonedemoone (fresh-ember-414917)$ cat service.yaml 
@@ -149,8 +149,8 @@ spec:
     app: k8sonespringbootapp
   ports:
     - protocol: TCP
-      port: 8080
-      targetPort: 8080
+      port: 8081
+      targetPort: 8081
   type: LoadBalancer
 jdkcolt@cloudshell:~/codebase/k8sonedemoone (fresh-ember-414917)$ 
 
@@ -182,12 +182,12 @@ jdkcolt@cloudshell:~/codebase/k8sonedemoone (fresh-ember-414917)$ kubectl logs k
 
 2024-03-10T04:51:59.152Z  INFO 1 --- [           main] c.k.k.K8sonedemooneApplication           : Starting K8sonedemooneApplication v0.0.1-SNAPSHOT using Java 17-ea with PID 1 (/app.jar started by root in /)
 2024-03-10T04:51:59.157Z  INFO 1 --- [           main] c.k.k.K8sonedemooneApplication           : No active profile set, falling back to 1 default profile: "default"
-2024-03-10T04:52:00.900Z  INFO 1 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2024-03-10T04:52:00.900Z  INFO 1 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8081 (http)
 2024-03-10T04:52:00.921Z  INFO 1 --- [           main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
 2024-03-10T04:52:00.922Z  INFO 1 --- [           main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.19]
 2024-03-10T04:52:01.128Z  INFO 1 --- [           main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
 2024-03-10T04:52:01.130Z  INFO 1 --- [           main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1871 ms
-2024-03-10T04:52:02.195Z  INFO 1 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path ''
+2024-03-10T04:52:02.195Z  INFO 1 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8081 (http) with context path ''
 2024-03-10T04:52:02.228Z  INFO 1 --- [           main] c.k.k.K8sonedemooneApplication           : Started K8sonedemooneApplication in 3.913 seconds (process running for 4.909)
 jdkcolt@cloudshell:~/codebase/k8sonedemoone (fresh-ember-414917)$ kubectl logs k8sonespringbootapp-deploy-7b4bb4c87b-blnx6
 
@@ -201,12 +201,12 @@ jdkcolt@cloudshell:~/codebase/k8sonedemoone (fresh-ember-414917)$ kubectl logs k
 
 2024-03-10T04:51:59.012Z  INFO 1 --- [           main] c.k.k.K8sonedemooneApplication           : Starting K8sonedemooneApplication v0.0.1-SNAPSHOT using Java 17-ea with PID 1 (/app.jar started by root in /)
 2024-03-10T04:51:59.018Z  INFO 1 --- [           main] c.k.k.K8sonedemooneApplication           : No active profile set, falling back to 1 default profile: "default"
-2024-03-10T04:52:01.215Z  INFO 1 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2024-03-10T04:52:01.215Z  INFO 1 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8081 (http)
 2024-03-10T04:52:01.238Z  INFO 1 --- [           main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
 2024-03-10T04:52:01.239Z  INFO 1 --- [           main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.19]
 2024-03-10T04:52:01.515Z  INFO 1 --- [           main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
 2024-03-10T04:52:01.519Z  INFO 1 --- [           main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 2345 ms
-2024-03-10T04:52:02.982Z  INFO 1 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path ''
+2024-03-10T04:52:02.982Z  INFO 1 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8081 (http) with context path ''
 2024-03-10T04:52:03.035Z  INFO 1 --- [           main] c.k.k.K8sonedemooneApplication           : Started K8sonedemooneApplication in 4.949 seconds (process running for 6.205)
 jdkcolt@cloudshell:~/codebase/k8sonedemoone (fresh-ember-414917)$ kubectl logs k8sonespringbootapp-deploy-7b4bb4c87b-qfwgl
 
@@ -220,12 +220,12 @@ jdkcolt@cloudshell:~/codebase/k8sonedemoone (fresh-ember-414917)$ kubectl logs k
 
 2024-03-10T04:51:57.692Z  INFO 1 --- [           main] c.k.k.K8sonedemooneApplication           : Starting K8sonedemooneApplication v0.0.1-SNAPSHOT using Java 17-ea with PID 1 (/app.jar started by root in /)
 2024-03-10T04:51:57.697Z  INFO 1 --- [           main] c.k.k.K8sonedemooneApplication           : No active profile set, falling back to 1 default profile: "default"
-2024-03-10T04:51:59.528Z  INFO 1 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2024-03-10T04:51:59.528Z  INFO 1 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8081 (http)
 2024-03-10T04:51:59.552Z  INFO 1 --- [           main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
 2024-03-10T04:51:59.553Z  INFO 1 --- [           main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.19]
 2024-03-10T04:51:59.732Z  INFO 1 --- [           main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
 2024-03-10T04:51:59.735Z  INFO 1 --- [           main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1924 ms
-2024-03-10T04:52:00.892Z  INFO 1 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path ''
+2024-03-10T04:52:00.892Z  INFO 1 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8081 (http) with context path ''
 2024-03-10T04:52:00.917Z  INFO 1 --- [           main] c.k.k.K8sonedemooneApplication           : Started K8sonedemooneApplication in 3.926 seconds (process running for 5.028)
 jdkcolt@cloudshell:~/codebase/k8sonedemoone (fresh-ember-414917)$ 
 
@@ -235,7 +235,7 @@ jdkcolt@cloudshell:~/codebase/k8sonedemoone (fresh-ember-414917)$ kubectl apply 
 service/k8sonespringbootapp-service created
 jdkcolt@cloudshell:~/codebase/k8sonedemoone (fresh-ember-414917)$ kubectl get svc
 NAME                          TYPE           CLUSTER-IP   EXTERNAL-IP    PORT(S)          AGE
-k8sonespringbootapp-service   LoadBalancer   10.8.3.196   35.224.134.2   8080:32151/TCP   47s
+k8sonespringbootapp-service   LoadBalancer   10.8.3.196   35.224.134.2   8081:32151/TCP   47s
 kubernetes                    ClusterIP      10.8.0.1     <none>         443/TCP          54m
 jdkcolt@cloudshell:~/codebase/k8sonedemoone (fresh-ember-414917)$ 
 
@@ -252,10 +252,10 @@ IP Families:              IPv4
 IP:                       10.8.3.196
 IPs:                      10.8.3.196
 LoadBalancer Ingress:     35.224.134.2
-Port:                     <unset>  8080/TCP
-TargetPort:               8080/TCP
+Port:                     <unset>  8081/TCP
+TargetPort:               8081/TCP
 NodePort:                 <unset>  32151/TCP
-Endpoints:                10.4.0.6:8080,10.4.1.9:8080,10.4.2.12:8080
+Endpoints:                10.4.0.6:8081,10.4.1.9:8081,10.4.2.12:8081
 Session Affinity:         None
 External Traffic Policy:  Cluster
 Events:
@@ -296,32 +296,32 @@ jdkcolt@cloudshell:~/codebase/k8sonedemoone (fresh-ember-414917)$ kubectl logs -
 
 2024-03-10T04:51:59.152Z  INFO 1 --- [           main] c.k.k.K8sonedemooneApplication           : Starting K8sonedemooneApplication v0.0.1-SNAPSHOT using Java 17-ea with PID 1 (/app.jar started by root in /)
 2024-03-10T04:51:59.157Z  INFO 1 --- [           main] c.k.k.K8sonedemooneApplication           : No active profile set, falling back to 1 default profile: "default"
-2024-03-10T04:52:00.900Z  INFO 1 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2024-03-10T04:52:00.900Z  INFO 1 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8081 (http)
 2024-03-10T04:52:00.921Z  INFO 1 --- [           main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
 2024-03-10T04:52:00.922Z  INFO 1 --- [           main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.19]
 2024-03-10T04:52:01.128Z  INFO 1 --- [           main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
 2024-03-10T04:52:01.130Z  INFO 1 --- [           main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1871 ms
-2024-03-10T04:52:02.195Z  INFO 1 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path ''
+2024-03-10T04:52:02.195Z  INFO 1 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8081 (http) with context path ''
 2024-03-10T04:52:02.228Z  INFO 1 --- [           main] c.k.k.K8sonedemooneApplication           : Started K8sonedemooneApplication in 3.913 seconds (process running for 4.909)
 2024-03-10T04:52:01.238Z  INFO 1 --- [           main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
 2024-03-10T04:52:01.239Z  INFO 1 --- [           main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.19]
 2024-03-10T04:52:01.515Z  INFO 1 --- [           main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
 2024-03-10T04:52:01.519Z  INFO 1 --- [           main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 2345 ms
-2024-03-10T04:52:02.982Z  INFO 1 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path ''
+2024-03-10T04:52:02.982Z  INFO 1 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8081 (http) with context path ''
 2024-03-10T04:52:03.035Z  INFO 1 --- [           main] c.k.k.K8sonedemooneApplication           : Started K8sonedemooneApplication in 4.949 seconds (process running for 6.205)
-2024-03-10T04:59:36.317Z  INFO 1 --- [nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
-2024-03-10T04:59:36.318Z  INFO 1 --- [nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
-2024-03-10T04:59:36.321Z  INFO 1 --- [nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 2 ms
-2024-03-10T04:59:44.226Z  INFO 1 --- [nio-8080-exec-3] c.k.k.K8sonedemooneApplication           : greet -  Hello, ram!!
+2024-03-10T04:59:36.317Z  INFO 1 --- [nio-8081-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-03-10T04:59:36.318Z  INFO 1 --- [nio-8081-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2024-03-10T04:59:36.321Z  INFO 1 --- [nio-8081-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 2 ms
+2024-03-10T04:59:44.226Z  INFO 1 --- [nio-8081-exec-3] c.k.k.K8sonedemooneApplication           : greet -  Hello, ram!!
 
 2024-03-10T04:51:57.692Z  INFO 1 --- [           main] c.k.k.K8sonedemooneApplication           : Starting K8sonedemooneApplication v0.0.1-SNAPSHOT using Java 17-ea with PID 1 (/app.jar started by root in /)
 2024-03-10T04:51:57.697Z  INFO 1 --- [           main] c.k.k.K8sonedemooneApplication           : No active profile set, falling back to 1 default profile: "default"
-2024-03-10T04:51:59.528Z  INFO 1 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2024-03-10T04:51:59.528Z  INFO 1 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8081 (http)
 2024-03-10T04:51:59.552Z  INFO 1 --- [           main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
 2024-03-10T04:51:59.553Z  INFO 1 --- [           main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.19]
 2024-03-10T04:51:59.732Z  INFO 1 --- [           main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
 2024-03-10T04:51:59.735Z  INFO 1 --- [           main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1924 ms
-2024-03-10T04:52:00.892Z  INFO 1 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path ''
+2024-03-10T04:52:00.892Z  INFO 1 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8081 (http) with context path ''
 2024-03-10T04:52:00.917Z  INFO 1 --- [           main] c.k.k.K8sonedemooneApplication           : Started K8sonedemooneApplication in 3.926 seconds (process running for 5.028)
 jdkcolt@cloudshell:~/codebase/k8sonedemoone (fresh-ember-414917)$
 
