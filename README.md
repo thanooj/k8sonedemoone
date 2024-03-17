@@ -465,6 +465,12 @@ Date: Sun, 17 Mar 2024 17:09:46 GMT
 POST API:
 --------
 curl -X POST -H 'Content-Type: application/json' -i 'http://35.226.75.37:8081/books' --data '{"title":"Book C","price":109.22,"publishDate":"2022-05-02"}'
+{"title":"Book C","price":109.22,"publishDate":"2022-05-02"}'
+HTTP/1.1 201 
+Content-Type: application/json
+Transfer-Encoding: chunked
+Date: Sun, 17 Mar 2024 17:12:21 GMT
+
 {"id":2,"title":"Book C","price":109.22,"publishDate":"2022-05-02"}
 
 
