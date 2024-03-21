@@ -40,8 +40,7 @@ spec:
         - name: mysql
           image: mysql:latest
           ports:
-            - name: tpc
-              protocol: TCP
+            - name: mysql
               containerPort: 3306
           env:
             - name: MYSQL_DATABASE # Setting Database Name from a 'ConfigMap'
@@ -79,8 +78,7 @@ metadata:
     tier: database
 spec:
   ports:
-    - name: tcp
-      protocol: TCP
+    - name: mysql
       port: 3306
   selector:       # mysql Pod Should contain same labels
     app: mysql
