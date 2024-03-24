@@ -1,6 +1,5 @@
 package com.k8sone.k8sonedemoone.controller;
 
-import com.k8sone.k8sonedemoone.K8sonedemooneApplication;
 import com.k8sone.k8sonedemoone.model.Book;
 import com.k8sone.k8sonedemoone.service.BookService;
 import org.slf4j.Logger;

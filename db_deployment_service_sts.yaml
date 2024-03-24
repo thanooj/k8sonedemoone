@@ -15,7 +15,7 @@ kind : ConfigMap
 metadata:
   name : db-config
 data:
-  host : mysql
+  host : 127.0.0.1
   dbName: mydb
 
 ---
