@@ -15,21 +15,81 @@ kind : ConfigMap
 metadata:
   name : db-config
 data:
-  host : 127.0.0.1
+  host : mysql
   dbName: mydb
 
 ---
+
+# StorageClass
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+  name: gcp-storage-class
+provisioner: kubernetes.io/gce-pd
+parameters:
+  type: pd-standard
+  fstype: ext4
+  replication-type: none
+reclaimPolicy: Retain
+allowVolumeExpansion: true
+mountOptions:
+  - debug
+
+
+---
+
+# Define a 'Service' To Expose mysql to Other Services
+apiVersion: v1
+kind: Service
+metadata:
+  name: mysql  # DNS name
+  labels:
+    app: mysql
+    tier: database
+spec:
+  type: ClusterIP # Note: The default Service type in Kubernetes, if no type is specified, is "ClusterIP".
+  ports:
+    - name: mysql
+      port: 3306
+  selector:       # mysql Pod Should contain same labels
+    app: mysql
+    tier: database
+  clusterIP: None  # We Use DNS, Thus ClusterIP is not relevant
+
+
+
+---
+
+
+# Define a 'Service' To Expose mysql to Other Services
+apiVersion: v1
+kind: Service
+metadata:
+  name: mysql-read  # DNS name
+  labels:
+    app: mysql
+    tier: database
+spec:
+  ports:
+    - name: mysql
+      port: 3306
+  selector:       # mysql Pod Should contain same labels
+    app: mysql
+    tier: database
+    
+---
+
 # Configure 'StatefulSet' of mysql server
 apiVersion: apps/v1
 kind: StatefulSet
 metadata:
   name: mysql
 spec:
-  replicas: 3
-  serviceName: mysql
   selector:
     matchLabels:
       app: mysql
+  serviceName: mysql
+  replicas: 3
   template:
     metadata:
       labels:
@@ -48,7 +108,6 @@ spec:
                 configMapKeyRef:
                   name: db-config
                   key: dbName
-
             - name: MYSQL_ROOT_PASSWORD
               valueFrom:
                 secretKeyRef:
@@ -57,30 +116,21 @@ spec:
           volumeMounts:
             - name: data
               mountPath: /var/lib/mysql
+            - name: conf
+              mountPath: /etc/mysql/conf.d
+      volumes: 
+        - name: conf
+          emptyDir: {}
+        - name: config-map
+          configMap: 
+            name: mysql    
   volumeClaimTemplates:
     - metadata:
         name: data
       spec:
-        storageClassName: standard
-        accessModes:
-          - ReadWriteOnce
+        storageClassName: gcp-storage-class
+        accessModes: ["ReadWriteOnce"]
         resources:
           requests:
             storage: 1Gi
----
-# Define a 'Service' To Expose mysql to Other Services
-apiVersion: v1
-kind: Service
-metadata:
-  name: mysql  # DNS name
-  labels:
-    app: mysql
-    tier: database
-spec:
-  ports:
-    - name: mysql
-      port: 3306
-  selector:       # mysql Pod Should contain same labels
-    app: mysql
-    tier: database
-  clusterIP: None  # We Use DNS, Thus ClusterIP is not relevant
+
