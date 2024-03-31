@@ -1,25 +1,3 @@
-#Secrets - MySQL encoded username and password
-apiVersion : v1
-kind : Secret
-metadata:
-  name : mysql-secrets
-data:
-  username : cm9vdA==
-  password : cm9vdA==
-
----
-
-# ConfigMap - db-config
-apiVersion : v1
-kind : ConfigMap
-metadata:
-  name : db-config
-data:
-  host : mysql
-  dbName: mydb
-
----
-
 # StorageClass
 apiVersion: storage.k8s.io/v1
 kind: StorageClass
@@ -42,7 +20,7 @@ mountOptions:
 apiVersion: v1
 kind: Service
 metadata:
-  name: mysql  # DNS name
+  name: mysqlservice  # DNS name
   labels:
     app: mysql
     tier: database
@@ -57,26 +35,6 @@ spec:
   clusterIP: None  # We Use DNS, Thus ClusterIP is not relevant
 
 
-
----
-
-
-# Define a 'Service' To Expose mysql to Other Services
-apiVersion: v1
-kind: Service
-metadata:
-  name: mysql-read  # DNS name
-  labels:
-    app: mysql
-    tier: database
-spec:
-  ports:
-    - name: mysql
-      port: 3306
-  selector:       # mysql Pod Should contain same labels
-    app: mysql
-    tier: database
-    
 ---
 
 # Configure 'StatefulSet' of mysql server
@@ -88,7 +46,7 @@ spec:
   selector:
     matchLabels:
       app: mysql
-  serviceName: mysql
+  serviceName: mysqlservice
   replicas: 3
   template:
     metadata:
@@ -98,21 +56,13 @@ spec:
       terminationGracePeriodSeconds: 5
       containers:
         - name: mysql
-          image: mysql:latest
+          image: mysql:5.7
           ports:
             - name: mysql
               containerPort: 3306
           env:
-            - name: MYSQL_DATABASE # Setting Database Name from a 'ConfigMap'
-              valueFrom:
-                configMapKeyRef:
-                  name: db-config
-                  key: dbName
-            - name: MYSQL_ROOT_PASSWORD
-              valueFrom:
-                secretKeyRef:
-                  name: mysql-secrets
-                  key: password
+            - name: MYSQL_ALLOW_EMPTY_PASSWORD
+              value: "1"
           volumeMounts:
             - name: data
               mountPath: /var/lib/mysql
